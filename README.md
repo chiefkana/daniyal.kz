@@ -72,8 +72,8 @@ daniyal.kz/
 1. **Clone this repository** (or download it):
 
    ```bash
-   git clone https://github.com/YourUser/my-furniture-project.git
-   cd my-furniture-project
+   git clone https://github.com/chiefkana/daniyal.kz.git
+   cd daniyal.kz
    ```
 
 2. **Install dependencies** for all packages:
@@ -114,7 +114,7 @@ daniyal.kz/
   pnpm run dev:astro
   ```
 
-  By default, Astro will run on [http://localhost:3000](http://localhost:3000).
+  By default, Astro will run on [http://localhost:4321](http://localhost:4321).
 
 Open two terminals if you want both servers running at once. Otherwise, you can run them sequentially as needed.
 
@@ -148,7 +148,7 @@ Open two terminals if you want both servers running at once. Otherwise, you can 
 
   ```bash
   # astro/.env
-  PUBLIC_STRAPI_URL=https://api.myfurniture.com
+  PUBLIC_STRAPI_URL=https://api.example.com
   ```
 
   Then reference it in your code:

@@ -1,0 +1,26 @@
+{
+  "name": "daniyal.kz",
+  "private": true,
+  "version": "0.0.1",
+  "devDependencies": {},
+  "scripts": {
+    "dev:astro": "pnpm --filter astro dev",
+    "dev:strapi": "pnpm --filter strapi develop",
+    "build:astro": "pnpm --filter astro build",
+    "build:strapi": "pnpm --filter strapi build"
+  },
+  "keywords": [
+    "daniyal.kz",
+    "furniture",
+    "e-commerce",
+    "astro project",
+    "strapi project",
+    "Kanat Bektursyn"
+  ],
+  "author": "Kanat Bektursyn, (kanat@bektursyn.kz)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "engines": {
+    "node": ">=22.11.0"
+  },
+  "type": "module"
+}

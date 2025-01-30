@@ -13,7 +13,7 @@ export const SITE: Site = {
   postPerIndex: 4,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-  showArchives: true,
+  showArchives: false,
   editPost: {
     url: "https://github.com/satnaing/astro-paper/edit/main/src/content/blog",
     text: "Suggest Changes",
@@ -36,20 +36,20 @@ export const LOGO_IMAGE = {
 export const SOCIALS: SocialObjects = [
   {
     name: "Facebook",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on Facebook`,
+    href: "https://www.facebook.com/MebelnyiDomDaniyal/",
+    linkTitle: `${SITE.title} в Facebook`,
     active: true,
   },
   {
     name: "Instagram",
     href: "https://www.instagram.com/daniyal_mebel/",
-    linkTitle: `${SITE.title} on Instagram`,
+    linkTitle: `${SITE.title} в Instagram`,
     active: true,
   },
   {
     name: "WhatsApp",
     href: "whatsapp://send?phone=77026596484&text=Здравствуйте! Интересуюсь вашей мебелью",
-    linkTitle: `${SITE.title} on WhatsApp`,
+    linkTitle: `${SITE.title} в WhatsApp`,
     active: true,
   },
   {

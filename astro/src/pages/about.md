@@ -1,36 +1,38 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "О нас"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+Мебельный дом **Даниял** — это надежный поставщик качественной мебели, расположенный в 
+городе Атырау. Мы гордимся тем, что уже 15 лет создаем комфортные и стильные интерьеры для 
+наших клиентов.
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
-
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+Наш мебельный дом зарекомендовал себя в индустрии благодаря высокому качеству продукции, 
+индивидуальному подходу к каждому клиенту и использованию современных технологий в 
+производстве мебели.
 
 <div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
+  <img src="/assets/logo.svg" class="sm:w-1/2 mx-auto" alt="иллюстрация мебельного дома">
 </div>
 
-## Tech Stack
+## Наш опыт и технологии
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+Мы используем только лучшие материалы и проверенные технологии, чтобы каждая деталь 
+нашей мебели отвечала высоким стандартам качества. Наш коллектив специалистов 
+бесперебойно работает над улучшением ассортимента, следит за новыми тенденциями в 
+дизайне и стремится предложить нашим клиентам лучшее.
 
-## Features
+## Особенности нашего магазина
 
-Here are certain features of this site.
+Вот некоторые преимущества, которые делают наш мебельный дом уникальным:
+  
+- **15 лет опыта** в индустрии мебели  
+- Высокое качество продукции  
+- Индивидуальный подход к потребностям каждого клиента  
+- Современные технологии производства  
+- Широкий ассортимент товаров для дома и офиса  
+- Консультации и помощь в выборе мебели  
 
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+Мы всегда рады новым идеям и предложениям. Если вы заинтересованы в сотрудничестве или 
+просто хотите узнать больше о нас, свяжитесь с нами через нашу электронную почту или 
+посетите наш магазин в Атырау.

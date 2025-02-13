@@ -27,7 +27,7 @@ export const fetchProducts = async (
     });
 
     const response = await fetch(
-      `${import.meta.env.VITE_STRAPI_URL}/api/products?${params}`
+      `${import.meta.env.VITE_STRAPI_URL}/api/products?locale=en`
     );
 
     if (!response.ok) {

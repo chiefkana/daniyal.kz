@@ -1,17 +1,19 @@
+import { fetchProducts } from "services/strapi";
+
 export async function GET({ request }: { request: Request }) {
   const url = new URL(request.url);
-  const page = url.searchParams.get('page') || '1';
-  
+  const page = url.searchParams.get("page") || "1";
+
   const { products, pagination } = await fetchProducts({
-	page: Number(page),
-	filters: {
-	  'filters[featured][$eq]': 'true'
-	}
+    page: Number(page),
+    filters: {
+      "filters[Featured][$eq]": "true",
+    },
   });
 
   return new Response(JSON.stringify({ products, pagination }), {
-	headers: {
-	  'Content-Type': 'application/json'
-	}
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }

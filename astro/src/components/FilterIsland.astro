@@ -1,0 +1,26 @@
+---
+const categories = ["Классическая", "Скандинавская", "Минимализм"];
+const types = ["Стульчики", "Кресла", "Диваны", "Спальные", "Кровати"];
+---
+
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[1160px] bg-background-50 rounded-3xl p-6 shadow-xl z-50">
+  <form class="flex flex-col sm:flex-row gap-4" on:submit={/* ... */}>
+	<div class="flex-1">
+	  <select class="w-full p-3 border border-secondary-200 rounded-xl bg-background-50">
+		<option value="">Виды</option>
+		{categories.map(cat => (
+		  <option value={cat} class="text-primary-900">{cat}</option>
+		))}
+	  </select>
+	</div>
+	
+	<div class="flex-1">
+	  <select class="w-full p-3 border border-secondary-200 rounded-xl bg-background-50">
+		<option value="">Типы</option>
+		{types.map(type => (
+		  <option value={type} class="text-primary-900">{type}</option>
+		))}
+	  </select>
+	</div>
+  </form>
+</div>

@@ -1,0 +1,50 @@
+---
+import { fetchProducts } from "../services/strapi";
+import ProductCard from "./ProductCard.astro";
+
+const { products, pagination } = await fetchProducts({
+  page: 1,
+  filters: { "filters[featured][$eq]": "true" },
+});
+---
+
+<section class="mx-auto max-w-[1160px] px-4 py-16">
+  <div
+    class="xl:grid-cols-3 grid grid-cols-1 gap-8 sm:grid-cols-2"
+    id="product-grid"
+  >
+    {products.map(product => <ProductCard product={product} />)}
+  </div>
+
+  {pagination?.pageCount > 1 && <div id="sentinel" class="h-1 w-full" />}
+</section>
+
+<script>
+  const sentinel = document.getElementById("sentinel");
+
+  if (sentinel) {
+    sentinel.onload = () => {
+      const observer = new IntersectionObserver(
+        async ([entry]) => {
+          if (entry.isIntersecting) {
+            const nextPage =
+              parseInt(
+                new URLSearchParams(window.location.search).get("page") || "1"
+              ) + 1;
+            const response = await fetch(`/api/products?page=${nextPage}`);
+            const { products: newProducts } = await response.json();
+
+            newProducts.forEach((product: any) => {
+              const card = document.createElement("astro-product-card");
+              card.setAttribute("product", JSON.stringify(product));
+              document.getElementById("product-grid")?.appendChild(card);
+            });
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(sentinel);
+    };
+  }
+</script>

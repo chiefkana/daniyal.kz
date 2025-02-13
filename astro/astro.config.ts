@@ -51,6 +51,6 @@ export default defineConfig({
     contentLayer: true,
   },
 
-  output: "static",
+  output: "server",
   adapter: vercel(),
 });

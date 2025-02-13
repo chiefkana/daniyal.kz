@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-
-
+import { Image } from "astro:assets";
 interface Props {
   featuredImages: string[];
 }
@@ -9,78 +7,59 @@ interface Props {
 const { featuredImages } = Astro.props;
 ---
 
-<section class="relative h-[90vh] min-h-[600px] max-h-[1200px] overflow-hidden pb-[72px]">
+<section
+  class="relative h-[90vh] max-h-[1200px] min-h-[600px] overflow-hidden pb-[72px]"
+>
   <!-- Background Images -->
   <div class="absolute inset-0 z-0">
-    {featuredImages.map((img, index) => (
-      <Image
-        src={img}
-        alt=""
-        width={1200}
-        height={800}
-        class={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] object-cover opacity-0 ${
-          index === 0 ? 'animate-fade-slide' : ''
-        }`}
-        style={`animation-delay: ${index * 4}s`}
-        loading="eager"
-        format="webp"
-      />
-    ))}
+    {
+      featuredImages.map((img, index) => (
+        <Image
+          src={img}
+          alt=""
+          width={1200}
+          height={800}
+          class={`absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 object-cover opacity-0 ${
+            index === 0 ? "animate-fade-slide" : ""
+          }`}
+          style={`animation-delay: ${index * 4}s`}
+          loading="eager"
+          format="webp"
+        />
+      ))
+    }
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 h-full max-w-[1160px] mx-auto flex flex-col xl:flex-row items-center justify-center px-4">
-    <h1 class="text-4xl xl:text-6xl font-bold uppercase leading-tight text-primary-900 mb-8 xl:mb-0 xl:flex-1">
-      Ваш стиль -<br>наша мебель
+  <div
+    class="xl:flex-row relative z-10 mx-auto flex h-full max-w-[1160px] flex-col items-center justify-center px-4"
+  >
+    <h1
+      class="xl:text-6xl xl:mb-0 xl:flex-1 mb-8 text-4xl font-bold uppercase leading-tight text-primary-900"
+    >
+      Ваш стиль -<br />наша мебель
     </h1>
-    <div class="xl:flex-1" /> <!-- Spacer -->
+    <div class="xl:flex-1"></div>
+    <!-- Spacer -->
   </div>
 
   <!-- Filter Island -->
-  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1160px] px-4">
-    <div class="bg-background-50 rounded-2xl shadow-xl p-6">
-      <form 
-        data-submit-form
-        class="flex flex-col sm:flex-row gap-4"
-      >
-        <select 
-          name="category"
-          class="w-full p-3 border border-secondary-200 rounded-lg bg-background-50 text-primary-900"
-        >
-          <option value="">Виды</option>
-          <option value="Классическая">Классическая</option>
-          <option value="Скандинавская">Скандинавская</option>
-          <option value="Минимализм">Минимализм</option>
-        </select>
-
-        <select 
-          name="type"
-          class="w-full p-3 border border-secondary-200 rounded-lg bg-background-50 text-primary-900"
-        >
-          <option value="">Типы</option>
-          <option value="Стульчики">Стульчики</option>
-          <option value="Кресла">Кресла</option>
-          <option value="Диваны">Диваны</option>
-          <option value="Спальные">Спальные</option>
-          <option value="Кровати">Кровати</option>
-        </select>
-
-        <button type="submit" class="hidden"></button>
-      </form>
-    </div>
-  </div>
+  <!-- <div
+    class="absolute bottom-0 left-1/2 w-full max-w-[1160px] -translate-x-1/2 px-4"
+  >
+  </div> -->
 </section>
 
 <script>
-  const form = document.querySelector('form')
-  if(form) { 
-    form.onsubmit = (e) => {
+  const form = document.querySelector("form");
+  if (form) {
+    form.onsubmit = e => {
       e.preventDefault();
       //@ts-ignore
       const formData = new FormData(e.currentTarget);
       //@ts-ignore
       const params = new URLSearchParams(formData);
       window.location.href = `/catalog?${params.toString()}`;
-    }
+    };
   }
 </script>

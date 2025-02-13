@@ -1,12 +1,14 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
+
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
+
+import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,9 +18,11 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    react(),
     sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
+      filter: (page: any) => SITE.showArchives || !page.endsWith("/archives"),
+    }),
+    vue({
+      include: ["**/*.vue"],
     }),
   ],
 
@@ -40,6 +44,7 @@ export default defineConfig({
   },
 
   vite: {
+    envPrefix: "VITE_",
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
@@ -51,6 +56,6 @@ export default defineConfig({
     contentLayer: true,
   },
 
-  output: "server",
+  output: "static",
   adapter: vercel(),
 });

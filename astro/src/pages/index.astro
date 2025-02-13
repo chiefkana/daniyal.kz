@@ -1,5 +1,4 @@
 ---
-
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
@@ -10,13 +9,13 @@ import Socials from "@components/Socials.astro";
 import { SITE, SOCIALS } from "@config";
 import { fetchProducts } from "services/strapi";
 import Hero from "@components/Hero.astro";
-import Products from "@components/Products.astro";
+import ProductGrid from "@/components/islands/ProductGrid.vue";
 
 const featuredProducts = await fetchProducts({
   filters: {
-    'filters[featured][$eq]': 'true',
-    'pagination[pageSize]': '9'
-  }
+    "filters[featured][$eq]": "true",
+    "pagination[pageSize]": "9",
+  },
 });
 
 const featuredImages = featuredProducts.products
@@ -49,15 +48,16 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </svg>
         <span class="sr-only">RSS Feed</span>
       </a>
-      
+
       <p>
-        Мебельный Дом "Даниял" — это надежный поставщик качественной и стильной мебели 
-        в Атырау. За 15 лет работы мы зарекомендовали себя как ответственный и профессиональный
-        партнёр, предлагающий широкий ассортимент изделий для создания уюта в доме и офисе.
+        Мебельный Дом "Даниял" — это надежный поставщик качественной и стильной
+        мебели в Атырау. За 15 лет работы мы зарекомендовали себя как
+        ответственный и профессиональный партнёр, предлагающий широкий
+        ассортимент изделий для создания уюта в доме и офисе.
       </p>
       <p>
-        Ознакомьтесь с нашими новостями и обновлениями, а также узнайте больше о нашей продукции
-        в разделе
+        Ознакомьтесь с нашими новостями и обновлениями, а также узнайте больше о
+        нашей продукции в разделе
         <LinkButton
           className="hover:text-skin-accent underline decoration-dashed underline-offset-4"
           href="/about"
@@ -78,9 +78,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
     <Hr />
 
-
-  <Hero featuredImages={featuredImages} />
-  <Products />
+    <Hero featuredImages={featuredImages} />
+    <ProductGrid client:load />
 
     <div class="all-posts-btn-wrapper">
       <LinkButton href="/posts/">
@@ -109,7 +108,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply mb-6;
   }
   #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 accent-red-300 sm:mb-3 sm:scale-125 hover:fill-accent-600;
+    @apply mb-2 h-6 w-6 scale-110 accent-red-300 hover:fill-accent-600 sm:mb-3 sm:scale-125;
   }
   #hero p {
     @apply my-2;

@@ -2,8 +2,9 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": "src",
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "paths": {
+      "@/*": ["./*"],
       "@assets/*": ["assets/*"],
       "@config": ["config.ts"],
       "@components/*": ["components/*"],

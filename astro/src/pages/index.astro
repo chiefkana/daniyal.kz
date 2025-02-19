@@ -10,6 +10,7 @@ import { SITE, SOCIALS } from "@config";
 import { fetchProducts } from "services/strapi";
 import Hero from "@components/Hero.astro";
 import ProductGrid from "@/components/islands/ProductGrid.vue";
+import HeroSection from "@/components/HeroSection.astro";
 
 const featuredProducts = await fetchProducts({
   filters: {
@@ -28,7 +29,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <Layout>
   <Header />
   <main id="main-content">
-    <section id="hero">
+    <!-- <section id="hero">
       <h1>Добро пожаловать в Мебельный Дом "Даниял"!</h1>
       <a
         target="_blank"
@@ -74,11 +75,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         )
       }
-    </section>
+    </section> -->
 
     <Hr />
 
-    <Hero featuredImages={featuredImages} />
+    <!-- <Hero featuredImages={featuredImages} /> -->
+    <HeroSection />
     <ProductGrid client:load />
 
     <div class="all-posts-btn-wrapper">

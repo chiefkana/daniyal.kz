@@ -9,6 +9,7 @@ import { SITE } from "./src/config";
 import vercel from "@astrojs/vercel/static";
 
 import vue from "@astrojs/vue";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +25,7 @@ export default defineConfig({
     vue({
       include: ["**/*.vue"],
     }),
+    react(),
   ],
 
   markdown: {
@@ -57,5 +59,5 @@ export default defineConfig({
   },
 
   output: "static",
-  adapter: vercel(),
+  adapter: vercel({}),
 });

@@ -50,7 +50,7 @@ export const useProductStore = () => {
       return;
     }
 
-    state.products = [...state.products, ...result.value.data];
+    state.products = result.value.data;
     state.pagination.hasMore =
       result.value.meta.pagination.page <
       result.value.meta.pagination.pageCount;

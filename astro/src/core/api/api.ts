@@ -19,15 +19,16 @@ export const fetchProducts = async (
       "pagination[pageSize]": String(pageSize),
       ...Object.entries(filters).reduce(
         (acc, [key, value]) => {
-          acc[`filters[${key}]`] = String(value);
+          acc[`filters[${key}][Name][$contains]`] = String(value);
           return acc;
         },
         {} as Record<string, string>
       ),
+      populate: "Images",
     });
 
     const response = await fetch(
-      `${import.meta.env.VITE_STRAPI_URL}/api/products?locale=en`
+      `${import.meta.env.VITE_STRAPI_URL}/api/products?${params.toString()}`
     );
 
     if (!response.ok) {
@@ -40,7 +41,7 @@ export const fetchProducts = async (
       useToastStore().showToast({
         type: "error",
         message: `Ошибка вывода данных`,
-        timeout: 3000,
+        timeout: 1000,
       });
 
       return left(error);
@@ -51,7 +52,7 @@ export const fetchProducts = async (
     useToastStore().showToast({
       type: "success",
       message: `Успех`,
-      timeout: 3000,
+      timeout: 1000,
     });
 
     console.log(data);
@@ -64,7 +65,7 @@ export const fetchProducts = async (
     useToastStore().showToast({
       type: "error",
       message,
-      timeout: 3000,
+      timeout: 1000,
     });
 
     return left({

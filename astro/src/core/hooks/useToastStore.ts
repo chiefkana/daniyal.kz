@@ -1,43 +1,62 @@
 import { reactive } from "vue";
 
-type ToastType = "success" | "error" | "info";
+export type ToastType = "success" | "error" | "info";
 
 interface Toast {
-  id: number;
+  id: symbol;
   message: string;
   type: ToastType;
   timeout: number;
+  hidden: boolean;
 }
 
-const toastState = reactive({
-  queue: [] as Toast[],
-  nextId: 0,
+const state = reactive({
+  toasts: [] as Toast[],
 });
 
+let counter = 0;
+
 export const useToastStore = () => {
-  const showToast = (
-    config: Omit<Toast, "id" | "timeout"> & { timeout?: number }
-  ) => {
+  const showToast = (config: Omit<Omit<Toast, "hidden">, "id">) => {
     const toast: Toast = {
-      id: toastState.nextId++,
-      timeout: 3000,
+      id: Symbol(++counter),
+      hidden: true,
       ...config,
     };
 
-    toastState.queue.push(toast);
+    state.toasts.push(toast);
 
     setTimeout(() => {
-      removeToast(toast.id);
+      toggleToast(toast.id);
+    }, 100);
+
+    setTimeout(() => {
+      toggleToast(toast.id);
+      setTimeout(() => {
+        dismissToast(toast.id);
+      }, 1000);
     }, toast.timeout);
+
+    return toast.id;
   };
 
-  const removeToast = (id: number) => {
-    toastState.queue = toastState.queue.filter(t => t.id !== id);
+  const toggleToast = (id: symbol) => {
+    const index = state.toasts.findIndex(t => t.id === id);
+    if (index > -1) {
+      state.toasts[index].hidden = !state.toasts[index].hidden;
+    }
+  };
+
+  const dismissToast = (id: symbol) => {
+    const index = state.toasts.findIndex(t => t.id === id);
+    if (index > -1) {
+      state.toasts.splice(index, 1);
+    }
   };
 
   return {
-    queue: toastState.queue,
+    toasts: state.toasts,
     showToast,
-    removeToast,
+    dismissToast,
   };
 };

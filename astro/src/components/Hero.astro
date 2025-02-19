@@ -8,7 +8,7 @@ const { featuredImages } = Astro.props;
 ---
 
 <section
-  class="relative h-[90vh] max-h-[1200px] min-h-[600px] overflow-hidden pb-[72px]"
+  class="relative h-[20vh] max-h-[1200px] min-h-[600px] overflow-hidden pb-[72px]"
 >
   <!-- Background Images -->
   <div class="absolute inset-0 z-0">
@@ -42,24 +42,4 @@ const { featuredImages } = Astro.props;
     <div class="xl:flex-1"></div>
     <!-- Spacer -->
   </div>
-
-  <!-- Filter Island -->
-  <!-- <div
-    class="absolute bottom-0 left-1/2 w-full max-w-[1160px] -translate-x-1/2 px-4"
-  >
-  </div> -->
 </section>
-
-<script>
-  const form = document.querySelector("form");
-  if (form) {
-    form.onsubmit = e => {
-      e.preventDefault();
-      //@ts-ignore
-      const formData = new FormData(e.currentTarget);
-      //@ts-ignore
-      const params = new URLSearchParams(formData);
-      window.location.href = `/catalog?${params.toString()}`;
-    };
-  }
-</script>

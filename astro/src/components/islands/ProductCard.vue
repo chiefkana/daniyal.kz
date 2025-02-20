@@ -34,7 +34,7 @@ const mainImage = computed(() => {
     </div>
 
     <div class="mb-3 flex items-start justify-between">
-      <h3 class="line-clamp-2 text-lg font-semibold text-primary-900">
+      <h3 class="line-clamp-2 text-lg font-semibold text-text">
         {{ product.Name }}
       </h3>
       <span class="whitespace-nowrap font-bold text-accent-500">
@@ -53,7 +53,7 @@ const mainImage = computed(() => {
 
     <p
       v-if="product.Description"
-      class="mb-4 line-clamp-3 text-sm text-text-600"
+      class="mb-4 line-clamp-3 text-sm text-secondary"
     >
       {{
         product.Description.flatMap(b => b.children)
@@ -63,7 +63,7 @@ const mainImage = computed(() => {
     </p>
 
     <button
-      class="w-full rounded-lg bg-accent-500 py-2.5 text-background-50 transition-colors hover:bg-accent-600"
+      class="w-full rounded-lg bg-accent py-2.5 text-text transition-colors hover:bg-accent-600"
       @click="$emit('add-to-cart', product)"
     >
       В корзину

@@ -24,7 +24,7 @@ onUnmounted(() => {
 <template>
   <div :class="['relative', { 'animate-bump': isAnimating }]">
     <svg
-      class="h-6 w-6 text-primary-900"
+      class="h-6 w-6 text-text"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

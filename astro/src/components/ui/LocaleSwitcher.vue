@@ -21,7 +21,7 @@ function handleLocaleClick(newLocale: Locales) {
   <div class="relative inline-block">
     <button
       @click="toggleDropdown"
-      class="flex items-center text-primary-900 transition-colors hover:text-accent-500 focus:outline-none"
+      class="flex items-center text-text transition-colors hover:text-accent-500 focus:outline-none"
     >
       <span class="ml-1 font-medium">{{ locale.toUpperCase() }}</span>
     </button>

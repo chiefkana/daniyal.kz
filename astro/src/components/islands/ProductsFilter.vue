@@ -20,7 +20,7 @@ const handleFilterChange = (event: Event) => {
       <select
         name="category"
         @change="handleFilterChange"
-        class="w-full rounded-lg border border-secondary-200 bg-background-50 p-3 text-primary-900"
+        class="w-full rounded-lg border border-secondary-200 bg-background-50 p-3 text-text"
       >
         <option value="">Виды</option>
         <option value="Классическая">Классическая</option>
@@ -31,7 +31,7 @@ const handleFilterChange = (event: Event) => {
       <select
         name="type"
         @change="handleFilterChange"
-        class="w-full rounded-lg border border-secondary-200 bg-background-50 p-3 text-primary-900"
+        class="w-full rounded-lg border border-secondary-200 bg-background-50 p-3 text-text"
       >
         <option value="">Типы</option>
         <option value="Стульчики">Стульчики</option>

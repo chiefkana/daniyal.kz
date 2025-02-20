@@ -6,9 +6,6 @@ module.exports = {
   theme: {
     // Remove the following screen breakpoint or add other breakpoints
     // if one breakpoint is not enough for you
-    screens: {
-      sm: "640px",
-    },
 
     extend: {
       colors: {
@@ -73,7 +70,7 @@ module.exports = {
           100: 'var(--accent-100)',
           200: 'var(--accent-200)',
           300: 'var(--accent-300)',
-          DEFAULT: 'var(--accent-400)',
+          DEFAULT: 'var(--accent-500)',
           400: 'var(--accent-400)',
           500: 'var(--accent-500)',
           600: 'var(--accent-600)',

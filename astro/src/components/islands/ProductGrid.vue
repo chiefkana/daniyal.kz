@@ -33,8 +33,7 @@ onUnmounted(() => {
 // Set grid container classes conditionally.
 // If there is only one product, add `justify-items-center` so that the single item is centered.
 const gridClasses = computed(() => {
-  const baseClasses =
-    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4";
+  const baseClasses = "grid grid-cols-1 lg:grid-cols-3 gap-6 py-4";
   return state.products.length === 1
     ? `${baseClasses} justify-items-center`
     : baseClasses;

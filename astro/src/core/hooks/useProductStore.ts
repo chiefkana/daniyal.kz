@@ -7,6 +7,7 @@ import type {
   StrapiResponse,
 } from "../types/strapi.d";
 import { isLeft } from "../types/strapi.d";
+import { useLocale } from "./useLocale";
 
 // Singleton state outside the composable
 const state = reactive({
@@ -20,7 +21,6 @@ const state = reactive({
     pageSize: 9,
     hasMore: true,
   },
-  locale: "en",
 });
 
 const loading = ref(false);
@@ -36,9 +36,10 @@ export const useProductStore = () => {
   const loadProducts = async () => {
     loading.value = true;
     error.value = null;
+    const { locale } = useLocale();
 
     const result: Either<StrapiError, StrapiResponse> = await fetchProducts(
-      state.locale,
+      locale.value,
       state.filters,
       state.pagination.page,
       state.pagination.pageSize

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect, ref, onMounted, onUnmounted } from "vue";
+import { watchEffect, ref, onMounted, onUnmounted, computed } from "vue";
 import { useProductStore } from "@/core/hooks/useProductStore";
 import ProductCard from "@components/islands/ProductCard.vue";
 import ProductsFilter from "./ProductsFilter.vue";
@@ -8,12 +8,12 @@ const { state, loading, error, loadProducts } = useProductStore();
 const observer = ref<IntersectionObserver | null>(null);
 const sentinel = ref<HTMLElement | null>(null);
 
-// Load products when filters or page changes
+// Load products whenever filters or page changes
 watchEffect(() => {
   loadProducts();
 });
 
-// Infinite scroll setup
+// Set up infinite scroll via an IntersectionObserver
 onMounted(() => {
   observer.value = new IntersectionObserver(
     ([entry]) => {
@@ -23,25 +23,31 @@ onMounted(() => {
     },
     { threshold: 0.1 }
   );
-
   if (sentinel.value) observer.value.observe(sentinel.value);
 });
 
 onUnmounted(() => {
   observer.value?.disconnect();
 });
+
+// Set grid container classes conditionally.
+// If there is only one product, add `justify-items-center` so that the single item is centered.
+const gridClasses = computed(() => {
+  const baseClasses =
+    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4";
+  return state.products.length === 1
+    ? `${baseClasses} justify-items-center`
+    : baseClasses;
+});
 </script>
 
 <template>
   <div class="product-grid">
-    <!-- Render product filter -->
     <ProductsFilter client:load />
 
-    <!-- Display error if exists -->
     <div v-if="error" class="error-message">{{ error }}</div>
 
-    <!-- Responsive grid layout: 1 col on mobile, 2 on small screens, 3 on large screens -->
-    <div class="lg:grid-cols-3 grid grid-cols-1 gap-6 sm:grid-cols-3">
+    <div :class="gridClasses">
       <ProductCard
         client:load
         v-for="product in state.products"
@@ -50,10 +56,7 @@ onUnmounted(() => {
       />
     </div>
 
-    <!-- Loading state indication -->
     <div v-if="loading" class="loading-indicator">Загрузка...</div>
-
-    <!-- Sentinel element for infinite scrolling -->
     <div ref="sentinel" class="scroll-sentinel" />
   </div>
 </template>

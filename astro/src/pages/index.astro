@@ -69,7 +69,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
     <!-- <Hero featuredImages={featuredImages} /> -->
     <HeroSection />
-    <ProductGrid client:load />
+    <ProductGrid client:only />
 
     <div class="all-posts-btn-wrapper">
       <LinkButton href="/posts/">
@@ -89,7 +89,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <style>
   /* ===== Hero Section ===== */
   #main-content {
-    @apply max-w-6xl;
+    @apply w-full max-w-6xl;
   }
   #hero {
     @apply pb-6 pt-8;

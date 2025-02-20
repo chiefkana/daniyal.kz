@@ -22,7 +22,7 @@ const mainImage = computed(() => {
 
 <template>
   <article
-    class="group relative rounded-xl bg-background-100 p-4 shadow-lg transition-shadow hover:shadow-xl"
+    class="group relative w-full rounded-xl bg-background-100 p-4 shadow-lg transition-shadow hover:shadow-xl"
   >
     <div class="mb-4 aspect-square overflow-hidden rounded-lg">
       <img

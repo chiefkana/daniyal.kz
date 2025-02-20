@@ -3,10 +3,10 @@ import HeroImages from "./HeroImages.vue";
 ---
 
 <section
-  class="relative h-[20vh] max-h-[1200px] min-h-[600px] overflow-hidden pb-[72px]"
+  class="relative h-[20vh] max-h-[1200px] min-h-[600px] w-full overflow-hidden pb-[72px]"
 >
   <!-- Vue component for dynamic images -->
-  <HeroImages client:load />
+  <HeroImages client:only />
 
   <!-- Static content in Astro -->
   <div

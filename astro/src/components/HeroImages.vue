@@ -41,14 +41,14 @@ onMounted(fetchImages);
     <div
       v-for="(img, index) in featuredImages"
       :key="index"
-      class="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2"
+      class="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-20"
       :class="index === -1 ? 'animate-fade-slide' : ''"
       :style="`animation-delay: ${index * 1}s`"
     >
       <img
         :src="`${url}${img}`"
         alt="Featured furniture"
-        class="h-full w-full object-contain"
+        class="h-full w-full object-cover"
         loading="eager"
         :srcset="`
           ${url}${img} 1200w,

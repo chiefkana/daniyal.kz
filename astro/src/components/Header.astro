@@ -1,6 +1,7 @@
 ---
 import { SITE } from "@/config";
 import CartIcon from "./CartIcon.vue";
+import LocaleSwitcher from "./ui/LocaleSwitcher.vue";
 ---
 
 <header class="top-0 z-50 w-full bg-background-50 py-4 shadow-sm">
@@ -15,22 +16,9 @@ import CartIcon from "./CartIcon.vue";
     <a href="/" class="text-2xl font-bold text-primary-900"> Мебель </a>
 
     <div class="flex gap-4">
-      <CartIcon client:load />
-      <a
-        href="/orders"
-        class="text-primary-900 transition-colors hover:text-accent-500"
-      >
-        <svg
-          class="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-          ></path>
-        </svg>
-      </a>
+      <!-- <CartIcon client:load /> -->
+
+      <LocaleSwitcher client:only />
       {
         SITE.lightAndDarkMode && (
           <button

@@ -20,7 +20,7 @@ const state = reactive({
     pageSize: 9,
     hasMore: true,
   },
-  locale: "ru",
+  locale: "en",
 });
 
 const loading = ref(false);

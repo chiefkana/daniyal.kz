@@ -7,21 +7,9 @@ import Hr from "@components/Hr.astro";
 
 import Socials from "@components/Socials.astro";
 import { SITE, SOCIALS } from "@config";
-import { fetchProducts } from "services/strapi";
 import Hero from "@components/Hero.astro";
 import ProductGrid from "@/components/islands/ProductGrid.vue";
 import HeroSection from "@/components/HeroSection.astro";
-
-const featuredProducts = await fetchProducts({
-  filters: {
-    "filters[featured][$eq]": "true",
-    "pagination[pageSize]": "9",
-  },
-});
-
-const featuredImages = featuredProducts.products
-  .slice(0, 3)
-  .map(p => p.attributes.images.data[0].attributes.url);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
@@ -100,6 +88,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
 <style>
   /* ===== Hero Section ===== */
+  #main-content {
+    @apply max-w-6xl;
+  }
   #hero {
     @apply pb-6 pt-8;
   }

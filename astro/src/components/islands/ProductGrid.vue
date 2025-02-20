@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { watchEffect, ref, onMounted, onUnmounted } from "vue";
-
 import { useProductStore } from "@/core/hooks/useProductStore";
 import ProductCard from "@components/islands/ProductCard.vue";
 import ProductsFilter from "./ProductsFilter.vue";
@@ -35,11 +34,14 @@ onUnmounted(() => {
 
 <template>
   <div class="product-grid">
+    <!-- Render product filter -->
     <ProductsFilter client:load />
 
+    <!-- Display error if exists -->
     <div v-if="error" class="error-message">{{ error }}</div>
 
-    <div class="grid-layout">
+    <!-- Responsive grid layout: 1 col on mobile, 2 on small screens, 3 on large screens -->
+    <div class="lg:grid-cols-3 grid grid-cols-1 gap-6 sm:grid-cols-3">
       <ProductCard
         client:load
         v-for="product in state.products"
@@ -48,7 +50,10 @@ onUnmounted(() => {
       />
     </div>
 
+    <!-- Loading state indication -->
     <div v-if="loading" class="loading-indicator">Загрузка...</div>
+
+    <!-- Sentinel element for infinite scrolling -->
     <div ref="sentinel" class="scroll-sentinel" />
   </div>
 </template>

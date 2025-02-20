@@ -1,19 +1,6 @@
 <script setup lang="ts">
+import type { StrapiProduct } from "@/core/types/strapi";
 import { ref, onMounted } from "vue";
-
-interface StrapiImage {
-  url: string;
-  formats: {
-    large?: { url: string };
-    medium?: { url: string };
-    small?: { url: string };
-    thumbnail?: { url: string };
-  };
-}
-
-interface StrapiProduct {
-  Images: StrapiImage[];
-}
 
 const featuredImages = ref<string[]>([]);
 const loading = ref(true);

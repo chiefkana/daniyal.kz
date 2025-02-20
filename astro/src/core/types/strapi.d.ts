@@ -41,11 +41,22 @@ export interface StrapiProduct {
       text: string;
     }>;
   }>;
+  Images: StrapiImage[];
   Colors: string[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   locale: string;
+}
+
+interface StrapiImage {
+  url: string;
+  formats: {
+    large?: { url: string };
+    medium?: { url: string };
+    small?: { url: string };
+    thumbnail?: { url: string };
+  };
 }
 
 export interface StrapiPagination {

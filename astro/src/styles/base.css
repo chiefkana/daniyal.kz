@@ -1,6 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.cjs';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility display-none {
+  @apply hidden;
+}
+
+@utility focus-outline {
+  @apply outline-2 outline-offset-1 outline-accent-200 focus-visible:no-underline focus-visible:outline-dashed;
+}
 
 @layer base {
   :root,
@@ -135,7 +161,7 @@
     display: block;
   }
   body {
-    @apply flex min-h-[100svh] flex-col bg-background font-mono text-text selection:bg-secondary-200 selection:text-text;
+    @apply flex min-h-svh flex-col bg-background font-mono text-text selection:bg-secondary-200 selection:text-text;
   }
   section,
   footer {
@@ -151,10 +177,10 @@
     @apply inline-block h-6 w-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110;
   }
   .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-text prose-h3:italic prose-p:!text-text prose-a:!text-text prose-a:!decoration-dashed prose-a:underline-offset-8 hover:prose-a:text-accent prose-blockquote:!border-l-accent prose-blockquote:opacity-80 prose-figcaption:!text-text prose-figcaption:opacity-70 prose-strong:!text-text prose-code:rounded prose-code:bg-background-300 prose-code:p-1 prose-code:before:!content-none prose-code:after:!content-none prose-ol:!text-text prose-ul:overflow-x-clip prose-ul:!text-text prose-li:marker:!text-accent prose-table:text-text prose-th:border prose-th:border-secondary prose-td:border prose-td:border-secondary prose-img:!my-2 prose-img:mx-auto prose-img:border-2 prose-img:border-secondary prose-hr:!border-secondary;
+    @apply prose-headings:mb-3! prose-headings:text-text! prose-h3:italic prose-p:text-text! prose-a:text-text! prose-a:decoration-dashed! prose-a:underline-offset-8 prose-a:hover:text-accent prose-blockquote:border-l-accent! prose-blockquote:opacity-80 prose-figcaption:text-text! prose-figcaption:opacity-70 prose-strong:text-text! prose-code:rounded-sm prose-code:bg-background-300 prose-code:p-1 prose-code:before:content-none! prose-code:after:content-none! prose-ol:text-text! prose-ul:overflow-x-clip prose-ul:text-text! prose-li:marker:text-accent! prose-table:text-text prose-th:border prose-th:border-secondary prose-td:border prose-td:border-secondary prose-img:my-2! prose-img:mx-auto prose-img:border-2 prose-img:border-secondary prose-hr:border-secondary!;
   }
   .prose a {
-    @apply break-words hover:!text-accent;
+    @apply break-words hover:text-accent!;
   }
   .prose thead th:first-child,
   tbody td:first-child,
@@ -220,14 +246,5 @@
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
-  }
-}
-
-@layer components {
-  .display-none {
-    @apply hidden;
-  }
-  .focus-outline {
-    @apply outline-2 outline-offset-1 outline-accent-200 focus-visible:no-underline focus-visible:outline-dashed;
   }
 }

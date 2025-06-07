@@ -10,36 +10,77 @@ const { featuredImages } = Astro.props;
 <section
   class="relative h-[20vh] max-h-[1200px] min-h-[600px] overflow-hidden pb-[72px]"
 >
-  <!-- Background Images -->
+  <!-- Slideshow Container -->
   <div class="absolute inset-0 z-0">
     {
       featuredImages.map((img, index) => (
-        <Image
-          src={img}
-          alt=""
-          width={1200}
-          height={800}
-          class={`absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 object-cover opacity-0 ${
-            index === 0 ? "animate-fade-slide" : ""
-          }`}
-          style={`animation-delay: ${index * 4}s`}
-          loading="eager"
-          format="webp"
-        />
+        <div
+          class={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"} ${index === 0 ? "translate-x-0" : "translate-x-full"} `}
+        >
+          <Image
+            src={img}
+            alt=""
+            width={1200}
+            height={800}
+            class="h-full w-full object-cover"
+            loading={index === 0 ? "eager" : "lazy"}
+            format="webp"
+          />
+        </div>
       ))
     }
   </div>
 
   <!-- Content -->
   <div
-    class="xl:flex-row relative z-10 mx-auto flex h-full max-w-[1160px] flex-col items-center justify-center px-4"
+    class="relative z-10 mx-auto flex h-full max-w-[1160px] flex-col items-center justify-center px-4 xl:flex-row"
   >
     <h1
-      class="xl:text-6xl xl:mb-0 xl:flex-1 mb-8 text-4xl font-bold uppercase leading-tight text-text"
+      class="mb-8 text-4xl font-bold uppercase leading-tight text-text xl:mb-0 xl:flex-1 xl:text-6xl"
     >
       Ваш стиль -<br />наша мебель
     </h1>
     <div class="xl:flex-1"></div>
-    <!-- Spacer -->
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".astro-slide");
+    if (slides.length < 2) return;
+
+    let current = 0;
+
+    setInterval(() => {
+      const next = (current + 1) % slides.length;
+
+      // Animate current slide out
+      slides[current].classList.add("translate-x-[-100%]", "opacity-0");
+      slides[current].classList.remove("translate-x-0", "opacity-100");
+
+      // Animate next slide in
+      slides[next].classList.remove("translate-x-full", "opacity-0");
+      slides[next].classList.add("translate-x-0", "opacity-100");
+
+      current = next;
+    }, 2000);
+  });
+</script>
+
+<style is:global>
+  /* Ensure smooth transitions */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 1000ms;
+  }
+
+  /* Initial positions */
+  .translate-x-full {
+    transform: translateX(100%);
+  }
+
+  .translate-x-[-100%] {
+    transform: translateX(-100%);
+  }
+</style>

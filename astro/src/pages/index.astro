@@ -17,59 +17,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <Layout>
   <Header />
   <main id="main-content">
-    <!-- <section id="hero">
-      <h1>Добро пожаловать в Мебельный Дом "Даниял"!</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon">
-          <path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path>
-          <path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path>
-          <circle cx="6" cy="18" r="2"></circle>
-        </svg>
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        Мебельный Дом "Даниял" — это надежный поставщик качественной и стильной
-        мебели в Атырау. За 15 лет работы мы зарекомендовали себя как
-        ответственный и профессиональный партнёр, предлагающий широкий
-        ассортимент изделий для создания уюта в доме и офисе.
-      </p>
-      <p>
-        Ознакомьтесь с нашими новостями и обновлениями, а также узнайте больше о
-        нашей продукции в разделе
-        <LinkButton
-          className="hover:text-skin-accent underline decoration-dashed underline-offset-4"
-          href="/about"
-        >
-          "О нас"
-        </LinkButton>.
-      </p>
-      {
-        // отображать, если как минимум одна социальная сеть активна
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Мы в соцсетях:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section> -->
-
     <Hr />
-
-    <!-- <Hero featuredImages={featuredImages} /> -->
     <HeroSection />
-    <ProductGrid client:only />
+    <section aria-labelledby="featured-products-heading" class="mb-16">
+      <div class="container mx-auto max-w-[1160px] px-4">
+        <ProductGrid client:only />
+      </div>
+    </section>
 
     <div class="all-posts-btn-wrapper">
       <LinkButton href="/posts/">

@@ -11,7 +11,7 @@ const handleFilterChange = (event: Event) => {
 
 <template>
   <div
-    class="flex items-center justify-center rounded-2xl bg-background-50 p-6 shadow-xl"
+    class="flex items-center justify-center rounded-2xl bg-background-50 p-6"
   >
     <form
       data-submit-form

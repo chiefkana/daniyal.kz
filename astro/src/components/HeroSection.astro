@@ -3,17 +3,17 @@ import HeroImages from "./HeroImages.vue";
 ---
 
 <section
-  class="relative h-[20vh] max-h-[1200px] min-h-[600px] w-full overflow-hidden pb-[72px]"
+  class="h-[20vh] max-h-[1200px] min-h-[600px] w-full overflow-hidden pb-[72px]"
 >
   <!-- Vue component for dynamic images -->
-  <HeroImages client:only />
+  <HeroImages client:load />
 
   <!-- Static content in Astro -->
   <div
-    class="xl:flex-row relative z-10 mx-auto flex h-full max-w-[1160px] flex-col items-center justify-center px-4"
+    class="relative z-10 mx-auto flex h-full max-w-[1160px] flex-col items-center justify-center px-4 xl:flex-row"
   >
     <h1
-      class="xl:text-6xl xl:mb-0 xl:flex-1 mb-8 text-4xl font-bold uppercase leading-tight text-text"
+      class="mb-8 text-4xl font-bold uppercase leading-tight text-text xl:mb-0 xl:flex-1 xl:text-6xl"
     >
       Ваш стиль -<br />наша мебель
     </h1>

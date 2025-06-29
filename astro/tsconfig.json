@@ -1,8 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*", "src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["dist"],
   "compilerOptions": {
     "baseUrl": "src",
-    "jsx": "preserve",
     "paths": {
       "@/*": ["./*"],
       "@assets/*": ["assets/*"],
@@ -12,7 +13,9 @@
       "@layouts/*": ["layouts/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
-    }
+      "@utils/*": ["utils/*"],
+      "@globals/*": ["globals/*"]
+    },
+    "jsx": "preserve"
   }
 }

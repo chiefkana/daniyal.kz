@@ -1,0 +1,35 @@
+---
+import HeroCarousel from "@/components/features/HeroCarousel.vue";
+import { Button } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/localization/i18n.utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+  return [
+    { params: { locale: "en" } },
+    { params: { locale: "ru" } },
+    { params: { locale: "kz" } },
+  ];
+}
+---
+
+<Layout>
+  <HeroCarousel client:load />
+  <Button client:load class="vue-button cursor-pointer" @click="pressedButton"
+    >Hello</Button
+  >
+</Layout>
+
+<script>
+  function pressedButton(e: Event) {
+    e.preventDefault();
+    window.open("https://docs.astro.build", "_blank");
+  }
+  document.addEventListener("astro:page-load", () => {
+    const foundButton = document.querySelector("button.vue-button");
+    foundButton?.addEventListener("click", pressedButton);
+  });
+</script>

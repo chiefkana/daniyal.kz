@@ -1,0 +1,16 @@
+---
+const slotContent = await Astro.slots.render("default");
+
+const isEmpty = !slotContent || slotContent.trim().length === 0;
+---
+
+<div
+  class:list={[
+    "w-full md:w-7xl px-3 md:px-0 gap-3 flex flex-col justify-start items-start",
+    { "min-h-12": isEmpty },
+    "container-child",
+  ]}
+  data-is-empty={isEmpty ? "true" : "false"}
+>
+  <Fragment set:html={slotContent} />
+</div>

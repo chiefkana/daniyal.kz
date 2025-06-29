@@ -1,0 +1,13 @@
+---
+import { languages } from "@/lib/localization/constants";
+---
+
+<ul>
+  {
+    Object.entries(languages).map(([lang, label]) => (
+      <li>
+        <a href={`/${lang}/`}>{label}</a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,22 +1,12 @@
 ---
-import Toast from "@/components/ui/Toast.vue";
-import { LOCALE, SITE } from "@config";
-import "@styles/base.css";
-import { ViewTransitions } from "astro:transitions";
-
-const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
-
-export interface Props {
-  title?: string;
-  author?: string;
-  profile?: string;
-  description?: string;
-  ogImage?: string;
-  canonicalURL?: string;
-  pubDatetime?: Date;
-  modDatetime?: Date | null;
-  scrollSmooth?: boolean;
-}
+import { ClientRouter } from "astro:transitions";
+import { SITE } from "@config";
+import Container from "@components/ui/astro/Container.astro";
+import Navigation from "@components/features/Navigation.vue";
+import "@globals/global.css";
+import ContainerList from "@/components/ui/astro/ContainerList.astro";
+import { getLangFromUrl } from "@/lib/localization/i18n.utils";
+import ColorSwitch from "@/components/features/ColorSwitch.vue";
 
 const {
   title = SITE.title,
@@ -24,7 +14,7 @@ const {
   profile = SITE.profile,
   description = SITE.desc,
   ogImage = SITE.ogImage,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  canonicalURL = new URL(Astro.url.pathname, Astro.url.origin).href,
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
@@ -50,16 +40,17 @@ const structuredData = {
     },
   ],
 };
+
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html
-  lang=`${LOCALE.lang ?? "en"}`
-  class={`${scrollSmooth && "scroll-smooth"}`}
->
+<html lang=`${lang}` class={`${scrollSmooth && "scroll-smooth"}`}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon-72x72.png" />
@@ -94,30 +85,6 @@ const structuredData = {
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={socialImageURL} />
-
-    <!-- Article Published/Modified time -->
-    {
-      pubDatetime && (
-        <meta
-          property="article:published_time"
-          content={pubDatetime.toISOString()}
-        />
-      )
-    }
-    {
-      modDatetime && (
-        <meta
-          property="article:modified_time"
-          content={modDatetime.toISOString()}
-        />
-      )
-    }
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -157,12 +124,28 @@ const structuredData = {
       )
     }
 
-    <ViewTransitions />
-
-    <script is:inline src="/toggle-theme.js" async></script>
+    <ClientRouter />
   </head>
-  <body class="flex items-center justify-center">
-    <Toast client:load />
-    <slot />
+  <body class="flex flex-col justify-start items-center">
+    <ContainerList>
+      <Container>
+        <div
+          class="flex justify-start items-center-safe gap-8 min-h-8 md:min-h-12"
+        >
+          <Navigation server:defer client:only />
+          <ColorSwitch server:defer client:load />
+        </div>
+        <slot />
+      </Container>
+    </ContainerList>
   </body>
 </html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

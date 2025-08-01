@@ -1,6 +1,6 @@
-import en from "./translations/en.json";
-import ru from "./translations/ru.json";
-import kz from "./translations/kz.json";
+import en from "./translations/en";
+import ru from "./translations/ru";
+import kz from "./translations/kz";
 
 import enR from "./routes/en.json";
 import ruR from "./routes/ru.json";

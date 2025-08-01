@@ -5,13 +5,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 const plugin = Autoplay({
-  delay: 1500,
-  stopOnMouseEnter: false,
+  delay: 2300,
+  stopOnMouseEnter: true,
   stopOnInteraction: false,
 });
 </script>
@@ -27,9 +25,9 @@ const plugin = Autoplay({
       <CarouselContent v-bind:class="'rounded-2xl'">
         <CarouselItem v-for="(_, index) in 5" :key="index">
           <div class="w-auto lg:w-full">
-            <AspectRatio :ratio="16 / 9" class="bg-muted">
+            <AspectRatio :ratio="16 / 9">
               <img
-                src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                src="https://images.unsplash.com/photo-1692216709176-7bc1f92aeb52?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Photo by Drew Beamer"
                 class="rounded-md object-cover w-full h-full"
               />

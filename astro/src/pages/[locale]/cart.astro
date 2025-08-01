@@ -1,0 +1,29 @@
+---
+
+
+export async function getStaticPaths() {
+  return [
+    { params: { locale: "en" } },
+    { params: { locale: "ru" } },
+    { params: { locale: "kz" } },
+  ];
+}
+---
+
+<div class="container mx-auto px-4 py-16 text-center">
+  <h1 class="mb-4 text-4xl font-bold text-gray-800">Your Shopping Cart</h1>
+  <p class="text-xl text-gray-600">Your cart is currently empty.</p>
+  <p class="mt-4 text-lg text-gray-500">
+    It looks like you haven't added anything to your cart yet.
+  </p>
+  <p class="mt-2 text-md text-gray-500">
+    Start adding some amazing furniture to your cart!
+  </p>
+
+  <a
+    href="/"
+    class="mt-10 inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-8 py-3 text-lg font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+  >
+    Continue Shopping
+  </a>
+</div>

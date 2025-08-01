@@ -5,8 +5,9 @@ import Container from "@components/ui/astro/Container.astro";
 import Navigation from "@components/features/Navigation.vue";
 import "@globals/global.css";
 import ContainerList from "@/components/ui/astro/ContainerList.astro";
-import { getLangFromUrl } from "@/lib/localization/i18n.utils";
-import ColorSwitch from "@/components/features/ColorSwitch.vue";
+import ColorSet from '@components/features/ColorSet.vue'
+import { getLangFromUrl, useTranslations } from "@/lib/localization/i18n.utils";
+
 
 const {
   title = SITE.title,
@@ -44,6 +45,7 @@ const structuredData = {
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
@@ -127,13 +129,13 @@ const lang = getLangFromUrl(Astro.url);
     <ClientRouter />
   </head>
   <body class="flex flex-col justify-start items-center">
+    <ColorSet client:only="vue"/>
     <ContainerList>
       <Container>
         <div
           class="flex justify-start items-center-safe gap-8 min-h-8 md:min-h-12"
         >
-          <Navigation server:defer client:only />
-          <ColorSwitch server:defer client:load />
+          <Navigation  client:only="vue" />
         </div>
         <slot />
       </Container>

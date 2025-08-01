@@ -1,6 +1,6 @@
 ---
 import HeroCarousel from "@/components/features/HeroCarousel.vue";
-import { Button } from "@/components/ui/button";
+import ProductListingPage from "@/components/pages/ProductListingPage.vue";
 import Layout from "@/layouts/Layout.astro";
 import { getLangFromUrl, useTranslations } from "@/lib/localization/i18n.utils";
 
@@ -9,27 +9,19 @@ const t = useTranslations(lang);
 
 export async function getStaticPaths() {
   return [
-    { params: { locale: "en" } },
-    { params: { locale: "ru" } },
-    { params: { locale: "kz" } },
+    { params: { locale: "en-US" } },
+    { params: { locale: "ru-RU" } },
+    { params: { locale: "kk-KZ" } },
   ];
 }
 ---
 
 <Layout>
-  <HeroCarousel client:load />
-  <Button client:load class="vue-button cursor-pointer" @click="pressedButton"
-    >Hello</Button
-  >
+  <HeroCarousel client:only="vue" />
+  <div class="container mx-auto">
+    <h1 class="mb-8 text-3xl font-bold">
+      {t("nav.catalog")}
+    </h1>
+    <ProductListingPage client:only="vue" />
+  </div>
 </Layout>
-
-<script>
-  function pressedButton(e: Event) {
-    e.preventDefault();
-    window.open("https://docs.astro.build", "_blank");
-  }
-  document.addEventListener("astro:page-load", () => {
-    const foundButton = document.querySelector("button.vue-button");
-    foundButton?.addEventListener("click", pressedButton);
-  });
-</script>

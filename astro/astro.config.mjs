@@ -8,13 +8,15 @@ import vue from '@astrojs/vue';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    envPrefix: "VITE_"
   },
 
-  integrations: [vue()],
+  integrations: [vue({appEntrypoint: "/src/pages/_vue", devtools: { launchEditor: "code" },
+})],
 
   i18n: {
-    locales: ["ru", "en", "kz"], // Locales you want to support
-    defaultLocale: "ru", // Default locale (fallback)
+    locales: ["ru-RU", "en-US", "kk-KZ"], // Locales you want to support
+    defaultLocale: "ru-RU", // Default locale (fallback)
 
     routing: {
       prefixDefaultLocale: true, // Ensures that your default locale is prefixed aswell
